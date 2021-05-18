@@ -21,6 +21,9 @@
 /* Browser specific styles */
 @import "dirty/hacks";
 
+@import "components/general.scss";
+@import "components/header.scss";
 @import "components/main.scss";
+// @import "components/pagination.scss";
 
 

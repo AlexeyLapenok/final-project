@@ -1,0 +1,30 @@
+.header {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: lightskyblue;
+    padding: 10px 62px;
+    &_home {
+        &:hover{
+        }
+        &:active {
+            
+        }
+    }
+    &_sign {
+        padding: 19px 30px 0px 30px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black; 
+        &:hover {
+            box-shadow: 1px 1px 13px 1px #0c3074;
+        }
+        &:active {
+            box-shadow: 1px 1px 1px 1px #0c3074;
+        }
+    }
+}

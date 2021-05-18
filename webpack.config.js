@@ -1,29 +1,34 @@
-/**
- * Webpack main configuration file
- */
-
 const path = require('path');
-const fs = require('fs');
+// const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const environment = require('./configuration/environment');
 
-const templateFiles = fs.readdirSync(path.resolve(__dirname, environment.paths.source, 'templates'));
-const htmlPluginEntries = templateFiles.map((template) => new HTMLWebpackPlugin({
-  inject: true,
-  hash: false,
-  filename: template,
-  template: path.resolve(environment.paths.source, 'templates', template),
-  favicon: path.resolve(environment.paths.source, 'images', 'favicon.ico'),
-}));
+// const templateFiles = fs.readdirSync(
+//   path.resolve(__dirname, environment.paths.source, 'templates'),
+// );
+// const htmlPluginEntries = templateFiles.map(
+//   (template) =>
+//     new HTMLWebpackPlugin({
+//       inject: true,
+//       hash: false,
+//       filename: template,
+//       template: path.resolve(environment.paths.source, 'templates', template),
+//       favicon: path.resolve(environment.paths.source, 'images', 'favicon.ico'),
+//       chank: ['app'],
+//     }),
+// );
 
 module.exports = {
   entry: {
+  // это точки входа
     app: path.resolve(environment.paths.source, 'js', 'app.js'),
+    auth: path.resolve(environment.paths.source, 'js', 'auth.js'),
   },
   output: {
     filename: 'js/[name].js',
@@ -41,7 +46,7 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.(png|gif|jpe?g|svg)$/i,
+        test: /\.(png|gif|jpe?g)$/i,
         use: [
           {
             loader: 'url-loader',
@@ -54,7 +59,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(eot|ttf|woff|woff2)$/,
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [
           {
             loader: 'url-loader',
@@ -73,7 +78,7 @@ module.exports = {
       filename: 'css/[name].css',
     }),
     new ImageMinimizerPlugin({
-      test: /\.(jpe?g|png|gif)$/i,
+      test: /\.(jpe?g|png|gif|svg)$/i,
       minimizerOptions: {
         // Lossless optimization with custom option
         // Feel free to experiment with options for better result for you
@@ -81,6 +86,16 @@ module.exports = {
           ['gifsicle', { interlaced: true }],
           ['jpegtran', { progressive: true }],
           ['optipng', { optimizationLevel: 5 }],
+          [
+            'svgo',
+            {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
         ],
       },
     }),
@@ -100,6 +115,24 @@ module.exports = {
         },
       ],
     }),
-  ].concat(htmlPluginEntries),
+
+    new HTMLWebpackPlugin({
+      inject: true,
+      hash: false,
+      filename: 'index.html',
+      template: path.resolve(environment.paths.source, 'templates', 'index.html'),
+      favicon: path.resolve(environment.paths.source, 'images', 'favicon.ico'),
+      chunks: ['app'],
+    }),
+    new HTMLWebpackPlugin({
+      inject: true,
+      hash: false,
+      filename: 'auth.html',
+      template: path.resolve(environment.paths.source, 'templates', 'auth.html'),
+      favicon: path.resolve(environment.paths.source, 'images', 'favicon.ico'),
+      chunks: ['auth'],
+    }),
+  ],
+  // .concat(htmlPluginEntries),
   target: 'web',
 };
