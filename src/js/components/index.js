@@ -145,18 +145,19 @@ pagination.addEventListener('click', (e) => {
   const four = e.target.closest('.four');
   if (four) {
     allMovies('4');
+    document.querySelector('.first-ellipsis').classList.remove('none');
     document.querySelector('.two').classList.add('none');
-    document.querySelector('.six').classList.add('none');
     document.querySelector('.three').classList.remove('none');
     document.querySelector('.five').classList.remove('none');
-    document.querySelector('.first-ellipsis').classList.remove('none');
+    document.querySelector('.six').classList.add('none');
   }
   const five = e.target.closest('.five');
   if (five) {
     allMovies('5');
-    document.querySelector('.four').classList.remove('none');
     document.querySelector('.three').classList.add('none');
+    document.querySelector('.four').classList.remove('none');
     document.querySelector('.six').classList.remove('none');
+    document.querySelector('.seven').classList.add('none');
     if (document.querySelector('.first-ellipsis').classList.contains('none')) {
       document.querySelector('.first-ellipsis').classList.remove('none');
     }
@@ -164,17 +165,20 @@ pagination.addEventListener('click', (e) => {
   const six = e.target.closest('.six');
   if (six) {
     allMovies('6');
-    document.querySelector('.five').classList.remove('none');
-    document.querySelector('.four').classList.add('none');
-    document.querySelector('.seven').classList.remove('none');
     document.querySelector('.first-ellipsis').classList.remove('none');
+    document.querySelector('.four').classList.add('none');
+    document.querySelector('.five').classList.remove('none');
+    document.querySelector('.seven').classList.remove('none');
+    document.querySelector('.eight').classList.add('none');
+    document.querySelector('.nine').classList.add('none');
+    document.querySelector('.second-ellipsis').classList.remove('none');
   }
   const seven = e.target.closest('.seven');
   if (seven) {
     allMovies('7');
     document.querySelector('.four').classList.add('none');
-    document.querySelector('.six').classList.remove('none');
     document.querySelector('.five').classList.add('none');
+    document.querySelector('.six').classList.remove('none');
     document.querySelector('.eight').classList.remove('none');
     document.querySelector('.nine').classList.remove('none');
     document.querySelector('.second-ellipsis').classList.add('none');
@@ -182,9 +186,8 @@ pagination.addEventListener('click', (e) => {
   const eight = e.target.closest('.eight');
   if (eight) {
     allMovies('8');
-    document.querySelector('.seven').classList.remove('none');
     document.querySelector('.six').classList.add('none');
-    document.querySelector('.first-ellipsis').classList.remove('none');
+    document.querySelector('.seven').classList.remove('none');
   }
   const nine = e.target.closest('.nine');
   if (nine) {
@@ -194,10 +197,10 @@ pagination.addEventListener('click', (e) => {
   const ten = e.target.closest('.ten');
   if (ten) {
     allMovies('10');
-    document.querySelector('.five').classList.add('none');
-    document.querySelector('.four').classList.add('none');
-    document.querySelector('.three').classList.add('none');
     document.querySelector('.two').classList.add('none');
+    document.querySelector('.three').classList.add('none');
+    document.querySelector('.four').classList.add('none');
+    document.querySelector('.five').classList.add('none');
     document.querySelector('.six').classList.add('none');
     document.querySelector('.eight').classList.remove('none');
     document.querySelector('.nine').classList.remove('none');
