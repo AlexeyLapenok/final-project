@@ -1,12 +1,8 @@
 const list = document.getElementById('movie-list');
-
 const sort = document.getElementById('sort');
-
 const container = document.querySelector('.container');
-const options = {
-  method: 'GET',
-  mode: 'cors',
-};
+const options = { method: 'GET', mode: 'cors' };
+
 const allMovies = function (page) {
   const url = 'https://api.themoviedb.org/3/discover/movie?api_key=4fd6fe1cdcc728e4b3c94a5165eac180&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=' + page;
   fetch(url, options)
