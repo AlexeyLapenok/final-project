@@ -10,8 +10,8 @@
     & .movie-list{
         list-style-type: none;
         padding-inline-start: 0;
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 30px 62px;
         & li {
             border: 3px solid lightskyblue; 
